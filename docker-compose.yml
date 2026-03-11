@@ -1,0 +1,18 @@
+services:
+  zerads-callback:
+    build:
+      context: .
+    container_name: zerads-callback
+    ports:
+      - "${HOST_PORT:-3000}:3000"
+    env_file:
+      - .env
+    volumes:
+      - ./storage:/app/storage
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
