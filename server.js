@@ -172,7 +172,7 @@ const server = http.createServer((request, response) => {
   const currentUrl = new URL(request.url || '/', baseUrl);
   const pathname = currentUrl.pathname;
 
-  if (pathname === '/' || pathname === '') {
+  if (pathname === '/status') {
     return sendJson(response, 200, {
       service: 'zerads-callback',
       status: 'online',
@@ -184,7 +184,7 @@ const server = http.createServer((request, response) => {
     });
   }
 
-  if (pathname === '/zerads' || pathname === '/zerads/') {
+  if (pathname === '/' || pathname === '' || pathname === '/zerads' || pathname === '/zerads/') {
     const userForPtc = (currentUrl.searchParams.get('user') || '').trim() || randomUser();
     const refForPtc = (currentUrl.searchParams.get('ref') || zeradsRef || '10776').trim() || '10776';
     const redirectTarget = `https://zerads.com/ptc.php?ref=${encodeURIComponent(refForPtc)}&user=${encodeURIComponent(userForPtc)}`;
