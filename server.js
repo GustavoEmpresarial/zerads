@@ -3,7 +3,7 @@ const path = require('node:path');
 const http = require('node:http');
 const { URL } = require('node:url');
 
-const port = Number(process.env.PORT || 3000);
+const port = Number(process.env.PORT || 5001);
 const callbackPassword = String(process.env.CALLBACK_PASSWORD || 'Qwerty12');
 const zeradsRef = String(process.env.ZERADS_REF || '10776').trim();
 
